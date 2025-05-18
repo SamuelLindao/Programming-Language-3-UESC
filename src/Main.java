@@ -16,5 +16,11 @@ public class Main {
         ContractedClass contracted = new ContractedClass();
         contracted.printNew();
         contracted.makePrint();
+
+        System.out.println("\nNew Contracted");
+
+        NotImplementedClass notImplemented = new NotImplementedClass();
+        notImplemented.printNew();
+        notImplemented.makePrint();
     }
 }

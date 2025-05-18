@@ -18,4 +18,14 @@ class ContractedClass implements InterfaceClass
     public void printNew() {
         System.out.println("Hello");
     }
+
+}
+
+class NotImplementedClass implements InterfaceClass
+{
+    @Override
+    public void printNew()
+    {
+        System.out.println("Oi");
+    }
 }
