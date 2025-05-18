@@ -11,5 +11,10 @@ public class Main {
         child.PrintSList();
         System.out.println("Bit Printer");
         child.printBits(32);
+
+        System.out.println("\n\nInterface");
+        ContractedClass contracted = new ContractedClass();
+        contracted.printNew();
+        contracted.makePrint();
     }
 }
