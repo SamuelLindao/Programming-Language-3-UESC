@@ -1,7 +1,10 @@
 ﻿package rpg;
 
+interface HabilidadeEspecial {
+    public void usar_habilidade_especial();
 
-public abstract class mobclass {
+}
+public abstract class mobclass implements HabilidadeEspecial {
     public String nome;
     public int vida;
     public int forca;
@@ -38,6 +41,11 @@ class Guerreiro extends mobclass
     public void defender() {
         System.out.println("\nDefesa com escudo!");
     }
+    public void usar_habilidade_especial() {
+        escudo -= escudo;
+
+        System.out.println("Usando Habilidade Especial: " + escudo + "; " + forca*2 );
+    }
 }
 
 class Mago extends mobclass
@@ -58,7 +66,11 @@ class Mago extends mobclass
         System.out.println("Ataque causado com dano de " + super.forca * 2);
     }
     public void defender() {
-
+        System.out.println("Como que defende!");
+    }
+    public void usar_habilidade_especial() {
+        mana += 20;
+        System.out.println("Usando Habilidade Especial: " + mana);
     }
 }
 class Arqueiro extends mobclass
@@ -80,5 +92,10 @@ class Arqueiro extends mobclass
     }
     public void defender() {
         System.out.println("\nNão defende sem escudo, morreu pai!");
+    }
+    public void usar_habilidade_especial() {
+        flechas -=3;
+        System.out.println("Atacou todos inimigos");
+        System.out.println("Usando Habilidade Especial: " + flechas);
     }
 }
