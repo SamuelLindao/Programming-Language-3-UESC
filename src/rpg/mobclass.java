@@ -1,4 +1,6 @@
 ﻿package rpg;
+import java.util.ArrayList;
+import java.util.List;
 
 interface HabilidadeEspecial {
     public void usar_habilidade_especial();
@@ -146,5 +148,16 @@ class Ladino extends mobclass
     public void usar_habilidade_especial() {
         stealth = true;
         System.out.println("Entrou modo stealth");
+    }
+}
+
+class Batalha
+{
+    List<mobclass> allies = new ArrayList<mobclass>();
+    List<mobclass> enemys = new ArrayList<mobclass>();
+
+    public void adicionar_aliado(mobclass person)
+    {
+
     }
 }
