@@ -99,3 +99,52 @@ class Arqueiro extends mobclass
         System.out.println("Usando Habilidade Especial: " + flechas);
     }
 }
+
+class Cerigo extends mobclass
+{
+    public int fe;
+    public Cerigo(String nome, int vida, int forca, int fe) {
+        super(nome, vida, forca);
+        this.fe = fe;
+    }
+    public void atacar() {
+        System.out.println("Deus matará meus inimigos!");
+    }
+    public void defender() {
+        System.out.println("Deus me defenderá");
+    }
+    public void usar_habilidade_especial() {
+        if(fe < 30)
+        {
+            System.out.println("Sem fé suficiente");
+            return;
+        }
+        fe-=30;
+        System.out.println("Curou aliados e reviveu personagens");
+    }
+
+}
+
+class Ladino extends mobclass
+{
+    public boolean stealth;
+    public Ladino(String nome, int vida, int forca, boolean stealth) {
+        super(nome, vida, forca);
+        this.stealth = stealth;
+    }
+    public void atacar() {
+        if(stealth)
+        {
+            System.out.println("Ataque em Stealth, dano: " + forca * 3);
+            stealth = false;
+        }
+        System.out.println("Ataque normal: " + stealth);
+    }
+    public void defender() {
+        System.out.println("Ladino defende?");
+    }
+    public void usar_habilidade_especial() {
+        stealth = true;
+        System.out.println("Entrou modo stealth");
+    }
+}
