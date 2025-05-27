@@ -22,7 +22,7 @@ public abstract class mobclass implements HabilidadeEspecial {
         System.out.println("Vida: " + vida);
         System.out.println("Forca: " + forca);
     }
-    public abstract void atacar();
+    public abstract void atacar(mobclass enemy);
     public abstract void defender();
 
 }
@@ -36,7 +36,8 @@ class Guerreiro extends mobclass
 
     }
 
-    public void atacar() {
+    public void atacar(mobclass enemy) {
+        enemy.vida -= (super.forca + 5);
         System.out.println("Ataque feito com dano de " + super.forca + 5);
     }
 
@@ -57,7 +58,7 @@ class Mago extends mobclass
         super(nome, vida, forca);
         this.mana = mana;
     }
-    public void atacar() {
+    public void atacar(mobclass enemy) {
         if(mana < 10)
         {
             System.out.println("Sem mana");
@@ -65,6 +66,8 @@ class Mago extends mobclass
 
         }
         mana -= 10;
+        enemy.vida -= (super.forca * 2);
+
         System.out.println("Ataque causado com dano de " + super.forca * 2);
     }
     public void defender() {
@@ -84,12 +87,13 @@ class Arqueiro extends mobclass
         this.flechas = flechas;
     }
 
-    public void atacar() {
+    public void atacar(mobclass enemy) {
         if(flechas == 0) {
             System.out.println("\nSem flecha!");
             return;
         }
         flechas--;
+        enemy.vida -= (super.forca + 3);
         System.out.println("Ataque feito com dano de " + super.forca + 3);
     }
     public void defender() {
@@ -109,7 +113,7 @@ class Cerigo extends mobclass
         super(nome, vida, forca);
         this.fe = fe;
     }
-    public void atacar() {
+    public void atacar(mobclass enenmy) {
         System.out.println("Deus matará meus inimigos!");
     }
     public void defender() {
@@ -134,13 +138,16 @@ class Ladino extends mobclass
         super(nome, vida, forca);
         this.stealth = stealth;
     }
-    public void atacar() {
+    public void atacar(mobclass enemy) {
         if(stealth)
         {
+            enemy.vida -= forca * 3;
             System.out.println("Ataque em Stealth, dano: " + forca * 3);
             stealth = false;
+            return;
         }
-        System.out.println("Ataque normal: " + stealth);
+        enemy.vida -= forca;
+        System.out.println("Ataque normal: " + forca);
     }
     public void defender() {
         System.out.println("Ladino defende?");
@@ -156,8 +163,28 @@ class Batalha
     List<mobclass> allies = new ArrayList<mobclass>();
     List<mobclass> enemys = new ArrayList<mobclass>();
 
+    public Batalha()
+    {
+        System.out.println("Batalha criada");
+    }
     public void adicionar_aliado(mobclass person)
     {
+        allies.add(person);
+    }
+    
+    public void adicionar_inimigos(mobclass person)
+    {
+        enemys.add(person);
+    }
+
+    public void atacar_turno(mobclass atacking, mobclass attacked)
+    {
+        System.out.println(attacked.nome + " attacked");
+        atacking.atacar(attacked);
+        if(attacked.vida <= 0)
+        {
+            enemys.removeIf(enemy -> enemy.vida <= 0);
+        }
 
     }
 }
