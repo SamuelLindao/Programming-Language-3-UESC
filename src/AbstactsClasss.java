@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstactsClasss {
-
+    String value;
     List<Integer> ints = new ArrayList<Integer>();
 
     public abstract void insertData(int Data);
